@@ -22,14 +22,20 @@ class WhisperASR(ASRInterface):
         file_path = await save_audio_to_file(
             client.scratch_buffer, client.get_file_name()
         )
-
+        task = "translate" if client.config["translate"] else "transcribe"
         if client.config["language"] is not None:
             to_return = self.asr_pipeline(
                 file_path,
-                generate_kwargs={"language": client.config["language"]},
+                generate_kwargs={
+                    "language": client.config["language"],
+                    "task": task
+                },
             )["text"]
         else:
-            to_return = self.asr_pipeline(file_path)["text"]
+            to_return = self.asr_pipeline(
+                file_path,
+                generate_kwargs={"task": task}
+            )["text"]
 
         os.remove(file_path)
 

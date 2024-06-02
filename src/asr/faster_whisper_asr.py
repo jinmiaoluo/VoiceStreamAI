@@ -128,8 +128,10 @@ class FasterWhisperASR(ASRInterface):
             if client.config["language"] is None
             else language_codes.get(client.config["language"].lower())
         )
+
+        task = "translate" if client.config["translate"] else "transcribe"
         segments, info = self.asr_pipeline.transcribe(
-            file_path, word_timestamps=True, language=language
+            file_path, word_timestamps=True, language=language, task=task
         )
 
         segments = list(segments)  # The transcription will actually run here.

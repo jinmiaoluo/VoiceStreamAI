@@ -24,6 +24,7 @@ const panel = document.querySelector('#silence_at_end_of_chunk_options_panel');
 const selectedStrategy = document.querySelector('#bufferingStrategySelect');
 const chunk_length_seconds = document.querySelector('#chunk_length_seconds');
 const chunk_offset_seconds = document.querySelector('#chunk_offset_seconds');
+const translateCheckbox = document.querySelector('#translateCheckbox');
 
 websocketAddress.addEventListener("input", resetWebsocketHandler);
 
@@ -200,7 +201,8 @@ function sendAudioConfig(language) {
             channels: 1,
             language: language,
             processing_strategy: selectedStrategy.value,
-            processing_args: processingArgs
+            processing_args: processingArgs,
+            translate: translateCheckbox.checked
         }
     };
 
