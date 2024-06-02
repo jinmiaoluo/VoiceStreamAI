@@ -35,6 +35,14 @@ websocketAddress.addEventListener("keydown", (event) => {
     }
 });
 
+chunk_offset_seconds.addEventListener("change", stopRecordingHandler);
+
+chunk_length_seconds.addEventListener("change", stopRecordingHandler);
+
+selectedLanguage.addEventListener("change", stopRecordingHandler);
+
+translateCheckbox.addEventListener("change", stopRecordingHandler);
+
 connectButton.addEventListener("click", connectWebsocketHandler);
 
 function resetWebsocketHandler() {
