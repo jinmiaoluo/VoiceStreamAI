@@ -272,6 +272,8 @@ function convertFloat32ToInt16(buffer) {
 // Initialize WebSocket on page load
 //  window.onload = initWebSocket;
 
+selectedStrategy.addEventListener("change", toggleBufferingStrategyPanel);
+
 function toggleBufferingStrategyPanel() {
     if (selectedStrategy.value === 'silence_at_end_of_chunk') {
         panel.classList.remove('hidden');
